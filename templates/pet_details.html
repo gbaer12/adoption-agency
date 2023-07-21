@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}{{pet.name}}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-auto">
+        <div class="card text-center" style="width: 18rem;">
+            <img src="{{pet.photo_url}}" alt="" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">Hi! I'm {{pet.name}}</h5>
+                <p class="card-text">{{pet.notes}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-itme">Species:  {{pet.species}}</li>
+                <li class="list-group-itme">Age:  {{pet.age}}</li>
+                <li class="list-group-itme">
+                    {% if pet.available %}
+                        <b>Available!</b>
+                    {% endif %}
+                </li>
+            </ul>
+
+            <div class="row">
+                <div class="col">
+                    <a href="/" class="btn btn-info">Home</a>
+                    <a href="/{{pet.id}}/edit" class="btn btn-warning">Edit</a>
+                    
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col">
+                    <form action="">
+                        <button formaction="/{{pet.id}}/delete" formmethod="POST" class="btn btn-danger" onclick="return confirm('Are you sure you want to DELETE this tag?')">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

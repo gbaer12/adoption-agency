@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Add a Pet{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="display-1 text-center">Add a new Pet</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+
+            {% for field in form if field.widget.input_type != 'hidden' %}
+
+            <div class="form-group m-2 form-control">
+                {{field.label}}
+                {{field}}
+            </div>
+            {% endfor %}
+
+            <!-- {{form.name.label}}
+            {{form.name(class_='form-control')}}
+            {{form.species.label}}
+            {{form.species(class_='form-control')}}
+            {{form.photo_url.label}}
+            {{form.photo_url(class_='form-control')}}
+            {{form.age.label}}
+            {{form.age(class_='form-control')}}
+            {{form.notes.label}}
+            {{form.notes(class_='form-control')}}
+            {{form.available.label}}
+            {{form.available}} -->
+
+            <div class="form-group mt-2">
+                <button class="btn btn-lg btn-success">Add</button>
+                <a href="/" class="btn btn-lg btn-danger">Back</a>
+            </div>
+        </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

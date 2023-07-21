@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Adopt a Pet{% endblock %}
+
+{% block content %}
+
+<div class="container text-center">
+    <h1>Adopt a Pet!</h1>
+    <div class="row">  
+        {% for pet in pets %}
+        {% if pet.available %}
+        <div class="col">
+            <img class="img-thumbnail" src="{{pet.photo_url}}" alt="" width="300" height="200">
+            <p><a href="/{{pet.id}}">{{pet.name}}</a>
+            {% if pet.available %}
+                <b> is available!</b>
+            {% endif %}
+            </p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="row"> 
+        <h1>No Longer Available</h1> 
+        {% for pet in pets %}
+        {% if not pet.available %}
+        <div class="col">
+            <img class="img-thumbnail" src="{{pet.photo_url}}" alt="" width="300" height="200">
+            <p><a href="/{{pet.id}}">{{pet.name}}</a>
+            {% if pet.available %}
+                <b> is available!</b>
+            {% endif %}
+            </p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <a href="/add" class="btn btn-success">Add a Pet</a>
+        </div>
+    </div>
+</div>
+
+<div class="bg-success-subtle text-info rounded-1 mt-4">
+    {% for msg in get_flashed_messages() %}
+        <p>
+            {{msg}}
+        </p>
+        {% endfor %}
+</div>
+
+
+{% endblock %}
